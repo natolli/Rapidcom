@@ -5,7 +5,7 @@ import { buildSchema } from "type-graphql";
 
 const main = async () => {
   const schema = await buildSchema({
-    resolvers: [__dirname + "/modules/**/*.ts"],
+    resolvers: [__dirname + "/modules/**/*.js"],
   });
 
   const apolloServer = new ApolloServer({

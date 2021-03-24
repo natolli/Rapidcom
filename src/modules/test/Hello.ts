@@ -4,6 +4,6 @@ import { Query, Resolver } from "type-graphql";
 export class HelloResolver {
   @Query(() => String)
   async helloWorld() {
-    return "Good Bye!";
+    return "Good Be!";
   }
 }
