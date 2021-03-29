@@ -2,10 +2,13 @@ import "reflect-metadata";
 import { ApolloServer } from "apollo-server-express";
 import * as Express from "express";
 import { buildSchema } from "type-graphql";
+import { createConnection } from "typeorm";
 
 const main = async () => {
+  await createConnection();
+
   const schema = await buildSchema({
-    resolvers: [__dirname + "/modules/**/*.js"],
+    resolvers: [__dirname + "/resolvers/**/*.js"],
   });
 
   const apolloServer = new ApolloServer({
@@ -18,8 +21,10 @@ const main = async () => {
 
   apolloServer.applyMiddleware({ app });
 
-  app.listen(process.env.PORT || 5000, () => {
-    console.log("server started");
+  const PORT = process.env.PORT || 5000;
+
+  app.listen(PORT, () => {
+    console.log(`server started at ${PORT}`);
   });
 };
 
